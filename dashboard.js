@@ -9,13 +9,13 @@ console.log(`service up`);
 
 rtm.on('message', (message) => {
 
-//  if ( (message.subtype && message.subtype === 'bot_message') || (!message.subtype && message.user === rtm.activeUserId) ) {
-//    return;
-//  }
-
-  console.log(`(channel:${message.channel}) ${message.user} says: ${message.text}`);
+	console.log(`(channel:${message.channel}) ${message.user} says: ${message.text}`);
   
-	(async () => {		
+	(async () => {	
+		  if ( (message.subtype && message.subtype === 'bot_message') || (!message.subtype && message.user === rtm.activeUserId) ) {
+			    return;
+		  }
+		  
 		  var res = await web.users.info({user: message.user});
 		  if(res.ok){
 			  console.log('Nombre de usuario -> ' + res.user.real_name);
@@ -27,13 +27,11 @@ rtm.on('message', (message) => {
 			console.log('Nombre del canal -> ' + res.channel.name);
 			var channel = res.channel.name;
 		  }
+		  	  
+		  rtm.sendMessage('Gracias por tu mensaje',message.channel)
+		  .then((res) => {console.log('Message sent');})
+		  .catch((err)=>{ console.log(err);});
 		  
-		  rtm.sendMessage('Gracias por tu mensaje ' + user + '!', message.channel)
-		  .then((res) => {
-		    console.log('Message sent');
-		  })
-		  
-	  
 		  console.log(`(channel:${channel}) ${user} says: ${message.text}`);		  
 	})();
 });
