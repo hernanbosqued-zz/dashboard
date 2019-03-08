@@ -1,5 +1,6 @@
 const { RTMClient, WebClient } = require('@slack/client');
-const token = "xoxb-58530797379-565023860738-otyqM5iyA8jJPphpFILdo8E4";
+const token = "xoxb-58530797379-565023860738-Bly5Kg8X5R3SwkA6lYbaq0Jt";
+
 const rtm = new RTMClient(token);
 const web = new WebClient(token);
 
