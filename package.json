@@ -4,7 +4,8 @@
   "description": "",
   "main": "dashboard.js",
   "dependencies": {
-    "@slack/client": "^4.11.0"
+    "@slack/client": "^4.11.0",
+    "onoff": "^4.1.0"
   },
   "devDependencies": {},
   "scripts": {
