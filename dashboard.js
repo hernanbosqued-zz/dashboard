@@ -5,13 +5,14 @@ const token = process.env.SLACK_TOKEN;
 const STG_BOT_ID = process.env. STG_BOT_ID;
 const rtm = new RTMClient(token);
 const web = new WebClient(token);
-const led = new Gpio(4, 'out'); 
+const led = new gpio(4, 'out'); 
 
 rtm.start();
 
 console.log(`service up`);
 
 rtm.on('message', (message) => {
+	console.log(message)
 
 	//console.log(`(channel:${message.channel}) ${message.user} says: ${message.text}`);
   
@@ -46,6 +47,5 @@ rtm.on('message', (message) => {
 		console.log(`(channel:${channel}) ${user} says: ${message.text}`);		  
 	})();
 });
-
 
 process.on('SIGINT', () => { led.unexport(); });
