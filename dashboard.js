@@ -1,7 +1,11 @@
 const { RTMClient, WebClient } = require('@slack/client');
+const gpio = require('onoff').Gpio;
+
 const token = process.env.SLACK_TOKEN;
+
 const rtm = new RTMClient(token);
 const web = new WebClient(token);
+const led = new Gpio(4, 'out'); 
 
 rtm.start();
 
