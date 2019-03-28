@@ -5,7 +5,9 @@ const token = process.env.SLACK_TOKEN;
 const SLACK_BOT_ID = process.env.SLACK_BOT_ID;
 const rtm = new RTMClient(token);
 const web = new WebClient(token);
-const led = new gpio(4, 'out'); 
+const led1 = new gpio(4, 'out');
+const led2 = new gpio(6, 'out');
+const led3 = new gpio(22, 'out'); 
 
 rtm.start();
 
@@ -17,12 +19,16 @@ rtm.on('message', (message) => {
 	(async () => {	
 		if ( message.subtype && message.subtype === 'bot_message' && message.bot_id == SLACK_BOT_ID) {
 			if( message.text === 'on' ){
-				console.log('on');
-				led.writeSync(1);
+				console.log('on');				
+				led1.writeSync(1);
+				led2.writeSync(1);
+				led3.writeSync(1);
 			}
 			else{
 				console.log('off');
-				led.writeSync(0);
+				led1.writeSync(0);
+				led2.writeSync(0);
+				led3.writeSync(0);
 			}
 		}
 		  
